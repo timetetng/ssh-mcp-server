@@ -1,5 +1,6 @@
 import { parseArgs } from "node:util";
-import { SSHConfig, SshConnectionConfigMap } from "../models/types.js";
+import { ParsedArgs, SSHConfig, SshConnectionConfigMap } from "../models/types.js";
+import { SshConfigLoader } from "../utils/ssh-config-loader.js";
 
 /**
  * Command line argument parser class
@@ -8,11 +9,13 @@ export class CommandLineParser {
   /**
    * Parse command line arguments
    */
-  public static parseArgs(): SshConnectionConfigMap {
+  public static parseArgs(): ParsedArgs {
     const { values, positionals } = parseArgs({
       args: process.argv.slice(2),
       options: {
         ssh: { type: "string", multiple: true },
+        "ssh-config": { type: "string", multiple: true }, // Load from SSH config
+        "http-port": { type: "string" },
         // Compatible with single connection legacy parameters
         host: { type: "string", short: "h" },
         port: { type: "string", short: "p" },
@@ -33,7 +36,29 @@ export class CommandLineParser {
       ? [values.ssh]
       : [];
 
+    const sshConfigParams: string[] = Array.isArray(values["ssh-config"])
+      ? values["ssh-config"]
+      : values["ssh-config"]
+      ? [values["ssh-config"]]
+      : [];
+
     const configMap: SshConnectionConfigMap = {};
+
+    // Load from ~/.ssh/config
+    if (sshConfigParams.length === 0) {
+      const loadedConfigs = SshConfigLoader.loadSshConfigs();
+      Object.assign(configMap, loadedConfigs);
+    }
+
+    // Parse multiple --ssh-config parameters (specific hosts from SSH config)
+    for (const hostName of sshConfigParams) {
+      const loadedConfigs = SshConfigLoader.loadSshConfigs();
+      if (loadedConfigs[hostName]) {
+        configMap[hostName] = loadedConfigs[hostName];
+      } else {
+        throw new Error(`SSH config for host '${hostName}' not found`);
+      }
+    }
 
     // Parse multiple --ssh parameters
     for (const sshStr of sshParams) {
@@ -92,9 +117,12 @@ export class CommandLineParser {
       const blacklist = values.blacklist;
 
       if (!host || !portStr || !username || (!password && !privateKey)) {
-        throw new Error(
-          "Missing required parameters, need to provide host, port, username and password or private key"
-        );
+        // 如果 http-port 也未指定，则抛出错误
+        if (!values["http-port"]) {
+          throw new Error(
+            "Missing required parameters, need to provide host, port, username and password or private key"
+          );
+        }
       }
 
       const port = parseInt(portStr, 10);
@@ -119,13 +147,22 @@ export class CommandLineParser {
           : undefined,
         commandBlacklist: blacklist
           ? blacklist
-              .split(",")
+              .split("|")
               .map((pattern) => pattern.trim())
               .filter(Boolean)
           : undefined,
       };
     }
 
-    return configMap;
+    // 解析 http-port
+    let httpPort: number | undefined = undefined;
+    if (values["http-port"]) {
+      httpPort = parseInt(values["http-port"] as string, 10);
+      if (isNaN(httpPort)) {
+        throw new Error("--http-port must be a valid number");
+      }
+    }
+
+    return { sshConfig: configMap, httpPort };
   }
 }

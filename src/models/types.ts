@@ -23,3 +23,11 @@ export type SshConnectionConfigMap = Record<string, SSHConfig>;
  * Log levels
  */
 export type LogLevel = "info" | "error" | "debug";
+
+/**
+ * Parsed command line arguments
+ */
+export interface ParsedArgs {
+  sshConfig: SshConnectionConfigMap;
+  httpPort?: number;
+}
