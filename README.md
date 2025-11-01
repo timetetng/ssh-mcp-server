@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/classfang/ssh-mcp-server)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.x-brightgreen.svg)](https://nodejs.org/)
 
-SSH-based MCP (Model Context Protocol) server that allows remote execution of SSH commands via the MCP protocol with support for both stdio and HTTP/SSE transport modes.
+SSH-based MCP (Model Context Protocol) server that allows remote execution of SSH commands via the MCP protocol with support for both stdio and HTTP transport modes.
 
 [中文文档](README_CN.md)
 
@@ -12,7 +12,7 @@ SSH-based MCP (Model Context Protocol) server that allows remote execution of SS
 
 ssh-mcp-server is a bridging tool that enables AI assistants and other applications supporting the MCP protocol to execute remote SSH commands through a standardized interface. This allows AI assistants to safely operate remote servers, execute commands, and retrieve results without directly exposing SSH credentials to AI models.
 
-**New in v1.2.3**: Now supports HTTP/SSE transport mode for remote deployment and automatic SSH configuration loading from `~/.ssh/config`.
+**New in v1.2.3**: Now supports HTTP transport mode for remote deployment and automatic SSH configuration loading from `~/.ssh/config`.
 
 ## ✨ Key Features
 
@@ -20,7 +20,7 @@ ssh-mcp-server is a bridging tool that enables AI assistants and other applicati
 - **🛡️ Command Security Control**: Precisely control the range of allowed commands through flexible blacklist and whitelist mechanisms to prevent dangerous operations
 - **🔄 Dual Transport Modes**:
   - **stdio mode** (default): Communication via standard input/output, suitable for local integration
-  - **HTTP/SSE mode**: Network-based HTTP communication, suitable for remote deployment
+  - **HTTP mode**: Network-based HTTP communication, suitable for remote deployment
 - **📂 File Transfer**: Supports bidirectional file transfers, uploading local files to servers or downloading files from servers
 - **🔑 Credential Isolation**: SSH credentials are managed entirely locally and never exposed to AI models, enhancing security
 - **🚀 Ready to Use**: Can be run directly using NPX without global installation, making it convenient and quick to deploy
@@ -37,7 +37,7 @@ No installation required - run directly with npx:
 # stdio mode
 npx -y @fangjunjie/ssh-mcp-server --host 192.168.1.1 --username root --password your_password
 
-# HTTP/SSE mode
+# HTTP mode
 npx -y @fangjunjie/ssh-mcp-server --http-port 8080
 ```
 
@@ -67,7 +67,7 @@ npm run build
 
 | Option | Description | Example |
 |--------|-------------|---------|
-| `--http-port <port>` | Enable HTTP/SSE mode with specified port | `--http-port 8080` |
+| `--http-port <port>` | Enable HTTP mode with specified port | `--http-port 8080` |
 | `--ssh-config <hostname>` | Load specific SSH config from `~/.ssh/config` | `--ssh-config myserver` |
 
 #### SSH Connection Options
@@ -87,7 +87,7 @@ npm run build
 
 ### 🚀 Quick Start Examples
 
-#### HTTP/SSE Mode (Recommended for Remote Deployment)
+#### HTTP Mode (Recommended for Remote Deployment)
 
 ```bash
 # Auto-load SSH config from ~/.ssh/config
@@ -329,7 +329,7 @@ tools = tools_response.json()
 print("Available tools:", tools)
 ```
 
-### 🌐 HTTP Endpoints (HTTP/SSE Mode)
+### 🌐 HTTP Endpoints (HTTP Mode)
 
 - `POST /mcp` - Main MCP protocol communication endpoint
   - First request: Initialize session (no session ID required)
