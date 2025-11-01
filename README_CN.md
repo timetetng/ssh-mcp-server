@@ -4,7 +4,7 @@
 [![许可证](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/classfang/ssh-mcp-server)
 [![Node.js 版本](https://img.shields.io/badge/node-%3E%3D18.x-brightgreen.svg)](https://nodejs.org/)
 
-基于 SSH 的 MCP (Model Context Protocol) 服务器，支持 stdio 和 HTTP/SSE 传输模式，允许通过 MCP 协议远程执行 SSH 命令。
+基于 SSH 的 MCP (Model Context Protocol) 服务器，支持 stdio 和 HTTP 传输模式，允许通过 MCP 协议远程执行 SSH 命令。
 
 [English Document](README.md) | 中文文档
 
@@ -12,7 +12,7 @@
 
 ssh-mcp-server 是一个桥接工具，可以让 AI 助手等支持 MCP 协议的应用通过标准化接口执行远程 SSH 命令。这使得 AI 助手能够安全地操作远程服务器，执行命令并获取结果，而无需直接暴露 SSH 凭据给 AI 模型。
 
-**v1.2.3 新增功能**：现在支持 HTTP/SSE 传输模式，适用于远程部署，并支持从 `~/.ssh/config` 自动加载 SSH 配置。
+**v1.2.3 新增功能**：现在支持 HTTP 传输模式，适用于远程部署，并支持从 `~/.ssh/config` 自动加载 SSH 配置。
 
 ## ✨ 功能亮点
 
@@ -20,7 +20,7 @@ ssh-mcp-server 是一个桥接工具，可以让 AI 助手等支持 MCP 协议�
 - **🛡️ 命令安全控制**：通过灵活的黑白名单机制，精确控制允许执行的命令范围，防止危险操作
 - **🔄 双重传输模式**：
   - **stdio 模式**（默认）：通过标准输入输出通信，适用于本地集成
-  - **HTTP/SSE 模式**：基于网络的 HTTP 通信，适用于远程部署
+  - **HTTP 模式**：基于网络的 HTTP 通信，适用于远程部署
 - **📂 文件传输**：支持双向文件传输功能，可上传本地文件到服务器或从服务器下载文件
 - **🔑 凭据隔离**：SSH 凭据完全在本地管理，不会暴露给 AI 模型，增强安全性
 - **🚀 即用即走**：使用 NPX 可直接运行，无需全局安装，方便快捷
@@ -42,7 +42,7 @@ NPM: [https://www.npmjs.com/package/@fangjunjie/ssh-mcp-server](https://www.npmj
 # stdio 模式
 npx -y @fangjunjie/ssh-mcp-server --host 192.168.1.1 --username root --password your_password
 
-# HTTP/SSE 模式
+# HTTP 模式
 npx -y @fangjunjie/ssh-mcp-server --http-port 8080
 ```
 
@@ -72,7 +72,7 @@ npm run build
 
 | 选项 | 描述 | 示例 |
 |--------|-------------|---------|
-| `--http-port <端口>` | 启用 HTTP/SSE 模式并指定端口 | `--http-port 8080` |
+| `--http-port <端口>` | 启用 HTTP 模式并指定端口 | `--http-port 8080` |
 | `--ssh-config <主机名>` | 从 `~/.ssh/config` 加载特定 SSH 配置 | `--ssh-config myserver` |
 
 #### SSH 连接选项
@@ -92,7 +92,7 @@ npm run build
 
 ### 🚀 快速开始示例
 
-#### HTTP/SSE 模式（推荐用于远程部署）
+#### HTTP 模式（推荐用于远程部署）
 
 ```bash
 # 从 ~/.ssh/config 自动加载 SSH 配置
@@ -334,7 +334,7 @@ tools = tools_response.json()
 print("Available tools:", tools)
 ```
 
-### 🌐 HTTP 端点（HTTP/SSE 模式）
+### 🌐 HTTP 端点（HTTP 模式）
 
 - `POST /mcp` - 主要 MCP 协议通信端点
   - 首次请求：初始化会话（不需要会话 ID）
