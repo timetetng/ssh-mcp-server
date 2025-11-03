@@ -1,7 +1,7 @@
 # 🔐 ssh-mcp-server
 
-[![NPM 版本](https://img.shields.io/npm/v/@fangjunjie/ssh-mcp-server.svg)](https://www.npmjs.com/package/@fangjunjie/ssh-mcp-server)
-[![许可证](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/classfang/ssh-mcp-server)
+[![NPM 版本](https://img.shields.io/npm/v/@timetetng/ssh-mcp-server.svg)](https://www.npmjs.com/package/@timetetng/ssh-mcp-server)
+[![许可证](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/timetetng/ssh-mcp-server)
 [![Node.js 版本](https://img.shields.io/badge/node-%3E%3D18.x-brightgreen.svg)](https://nodejs.org/)
 
 基于 SSH 的 MCP (Model Context Protocol) 服务器，支持 stdio 和 HTTP 传输模式，允许通过 MCP 协议远程执行 SSH 命令。
@@ -29,8 +29,8 @@ ssh-mcp-server 是一个桥接工具，可以让 AI 助手等支持 MCP 协议�
 
 ## 📦 开源仓库
 
-GitHub：[https://github.com/classfang/ssh-mcp-server](https://github.com/classfang/ssh-mcp-server)
-NPM: [https://www.npmjs.com/package/@fangjunjie/ssh-mcp-server](https://www.npmjs.com/package/@fangjunjie/ssh-mcp-server)
+GitHub：[https://github.com/timetetng/ssh-mcp-server](https://github.com/timetetng/ssh-mcp-server)
+NPM: [https://www.npmjs.com/package/@timetetng/ssh-mcp-server](https://www.npmjs.com/package/@timetetng/ssh-mcp-server)
 
 ## 📦 安装
 
@@ -40,16 +40,16 @@ NPM: [https://www.npmjs.com/package/@fangjunjie/ssh-mcp-server](https://www.npmj
 
 ```bash
 # stdio 模式
-npx -y @fangjunjie/ssh-mcp-server --host 192.168.1.1 --username root --password your_password
+npx -y @timetetng/ssh-mcp-server --host 192.168.1.1 --username root --password your_password
 
 # HTTP 模式
-npx -y @fangjunjie/ssh-mcp-server --http-port 8080
+npx -y @timetetng/ssh-mcp-server --http-port 8080
 ```
 
 ### 从源码安装
 
 ```bash
-git clone https://github.com/classfang/ssh-mcp-server.git
+git clone https://github.com/timetetng/ssh-mcp-server.git
 cd ssh-mcp-server
 npm install
 npm run build
@@ -117,21 +117,21 @@ node build/index.js --http-port 8080 \
 
 ```bash
 # 使用密码
-npx -y @fangjunjie/ssh-mcp-server \
+npx -y @timetetng/ssh-mcp-server \
   --host 192.168.1.1 \
   --port 22 \
   --username root \
   --password pwd123456
 
 # 使用私钥
-npx -y @fangjunjie/ssh-mcp-server \
+npx -y @timetetng/ssh-mcp-server \
   --host 192.168.1.1 \
   --port 22 \
   --username root \
   --privateKey ~/.ssh/id_rsa
 
 # 多个 SSH 连接
-npx -y @fangjunjie/ssh-mcp-server \
+npx -y @timetetng/ssh-mcp-server \
   --ssh "name=dev,host=1.2.3.4,port=22,user=alice,password=xxx" \
   --ssh "name=prod,host=5.6.7.8,port=22,user=bob,password=yyy"
 ```
@@ -149,7 +149,7 @@ npx -y @fangjunjie/ssh-mcp-server \
       "command": "npx",
       "args": [
         "-y",
-        "@fangjunjie/ssh-mcp-server",
+        "@timetetng/ssh-mcp-server",
         "--host", "192.168.1.1",
         "--port", "22",
         "--username", "root",
@@ -169,7 +169,7 @@ npx -y @fangjunjie/ssh-mcp-server \
       "command": "npx",
       "args": [
         "-y",
-        "@fangjunjie/ssh-mcp-server",
+        "@timetetng/ssh-mcp-server",
         "--host", "192.168.1.1",
         "--port", "22",
         "--username", "root",
@@ -191,7 +191,7 @@ npx -y @fangjunjie/ssh-mcp-server \
       "command": "npx",
       "args": [
         "-y",
-        "@fangjunjie/ssh-mcp-server",
+        "@timetetng/ssh-mcp-server",
         "--host", "192.168.1.1",
         "--port", "22",
         "--username", "root",
@@ -212,7 +212,7 @@ npx -y @fangjunjie/ssh-mcp-server \
       "command": "npx",
       "args": [
         "-y",
-        "@fangjunjie/ssh-mcp-server",
+        "@timetetng/ssh-mcp-server",
         "--host", "192.168.1.1",
         "--port", "22",
         "--username", "root",
@@ -455,8 +455,8 @@ MIT
 
 - [MCP 协议规范](https://modelcontextprotocol.io)
 - [MCP SDK 文档](https://github.com/modelcontextprotocol/sdk)
-- [GitHub 仓库](https://github.com/classfang/ssh-mcp-server)
-- [NPM 包](https://www.npmjs.com/package/@fangjunjie/ssh-mcp-server)
+- [GitHub 仓库](https://github.com/timetetng/ssh-mcp-server)
+- [NPM 包](https://www.npmjs.com/package/@timetetng/ssh-mcp-server)
 
 ---
 
