@@ -1,7 +1,7 @@
 {
-  "name": "@fangjunjie/ssh-mcp-server",
+  "name": "@timetetng/ssh-mcp-server",
   "version": "1.2.3",
-  "description": "SSH-based MCP Server (基于 SSH 的 MCP 服务器)",
+  "description": "SSH-based MCP Server (基于 SSH 的 MCP 服务器) - Enhanced with Streamable HTTP support",
   "main": "build/index.js",
   "type": "module",
   "bin": {
@@ -16,10 +16,16 @@
     "ssh",
     "mcp",
     "server",
-    "cli"
+    "cli",
+    "http",
+    "streamable"
   ],
-  "author": "Junki",
+  "author": "timetetng",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timetetng/ssh-mcp-server.git"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.17.5",
     "cors": "^2.8.5",

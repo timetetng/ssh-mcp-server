@@ -1,7 +1,7 @@
 # 🔐 ssh-mcp-server
 
-[![NPM Version](https://img.shields.io/npm/v/@fangjunjie/ssh-mcp-server.svg)](https://www.npmjs.com/package/@fangjunjie/ssh-mcp-server)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/classfang/ssh-mcp-server)
+[![NPM Version](https://img.shields.io/npm/v/@timetetng/ssh-mcp-server.svg)](https://www.npmjs.com/package/@timetetng/ssh-mcp-server)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/timetetng/ssh-mcp-server)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.x-brightgreen.svg)](https://nodejs.org/)
 
 SSH-based MCP (Model Context Protocol) server that allows remote execution of SSH commands via the MCP protocol with support for both stdio and HTTP transport modes.
@@ -35,16 +35,16 @@ No installation required - run directly with npx:
 
 ```bash
 # stdio mode
-npx -y @fangjunjie/ssh-mcp-server --host 192.168.1.1 --username root --password your_password
+npx -y @timetetng/ssh-mcp-server --host 192.168.1.1 --username root --password your_password
 
 # HTTP mode
-npx -y @fangjunjie/ssh-mcp-server --http-port 8080
+npx -y @timetetng/ssh-mcp-server --http-port 8080
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/classfang/ssh-mcp-server.git
+git clone https://github.com/timetetng/ssh-mcp-server.git
 cd ssh-mcp-server
 npm install
 npm run build
@@ -112,21 +112,21 @@ node build/index.js --http-port 8080 \
 
 ```bash
 # Using password
-npx -y @fangjunjie/ssh-mcp-server \
+npx -y @timetetng/ssh-mcp-server \
   --host 192.168.1.1 \
   --port 22 \
   --username root \
   --password pwd123456
 
 # Using private key
-npx -y @fangjunjie/ssh-mcp-server \
+npx -y @timetetng/ssh-mcp-server \
   --host 192.168.1.1 \
   --port 22 \
   --username root \
   --privateKey ~/.ssh/id_rsa
 
 # Multiple SSH connections
-npx -y @fangjunjie/ssh-mcp-server \
+npx -y @timetetng/ssh-mcp-server \
   --ssh "name=dev,host=1.2.3.4,port=22,user=alice,password=xxx" \
   --ssh "name=prod,host=5.6.7.8,port=22,user=bob,password=yyy"
 ```
@@ -144,7 +144,7 @@ npx -y @fangjunjie/ssh-mcp-server \
       "command": "npx",
       "args": [
         "-y",
-        "@fangjunjie/ssh-mcp-server",
+        "@timetetng/ssh-mcp-server",
         "--host", "192.168.1.1",
         "--port", "22",
         "--username", "root",
@@ -164,7 +164,7 @@ npx -y @fangjunjie/ssh-mcp-server \
       "command": "npx",
       "args": [
         "-y",
-        "@fangjunjie/ssh-mcp-server",
+        "@timetetng/ssh-mcp-server",
         "--host", "192.168.1.1",
         "--port", "22",
         "--username", "root",
@@ -186,7 +186,7 @@ npx -y @fangjunjie/ssh-mcp-server \
       "command": "npx",
       "args": [
         "-y",
-        "@fangjunjie/ssh-mcp-server",
+        "@timetetng/ssh-mcp-server",
         "--host", "192.168.1.1",
         "--port", "22",
         "--username", "root",
@@ -207,7 +207,7 @@ npx -y @fangjunjie/ssh-mcp-server \
       "command": "npx",
       "args": [
         "-y",
-        "@fangjunjie/ssh-mcp-server",
+        "@timetetng/ssh-mcp-server",
         "--host", "192.168.1.1",
         "--port", "22",
         "--username", "root",
@@ -450,8 +450,8 @@ MIT
 
 - [MCP Protocol Specification](https://modelcontextprotocol.io)
 - [MCP SDK Documentation](https://github.com/modelcontextprotocol/sdk)
-- [GitHub Repository](https://github.com/classfang/ssh-mcp-server)
-- [NPM Package](https://www.npmjs.com/package/@fangjunjie/ssh-mcp-server)
+- [GitHub Repository](https://github.com/timetetng/ssh-mcp-server)
+- [NPM Package](https://www.npmjs.com/package/@timetetng/ssh-mcp-server)
 
 ---
 
